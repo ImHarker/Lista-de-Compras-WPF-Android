@@ -1,0 +1,9 @@
+﻿<Application x:Class="Lista_de_Compras___Projeto_LabSW.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Lista_de_Compras___Projeto_LabSW"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+
+    </Application.Resources>
+</Application>

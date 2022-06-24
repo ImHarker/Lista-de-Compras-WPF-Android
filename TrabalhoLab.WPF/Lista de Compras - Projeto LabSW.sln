@@ -1,0 +1,57 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32228.430
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lista de Compras - Projeto LabSW", "Lista de Compras - Projeto LabSW.csproj", "{CB394DB6-1783-4242-A0CD-FC8CB8BEB111}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1-Desktop", "1-Desktop", "{7294E363-4F81-4B56-945F-4C29E3F9F284}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0-Domain", "0-Domain", "{AB97C6D5-B03E-40EC-BBC4-58E0041FA73A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrabalhoLab.Domain", "..\TrabalhoLab.Domain\TrabalhoLab.Domain.csproj", "{AF3BF001-3A00-4F2E-B05F-5843F1543990}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2-Mobile", "2-Mobile", "{EDE6724C-D653-477B-B82C-63709402409E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrabalhoLab.Xamarin", "..\TrabalhoLab.Xamarin\TrabalhoLab.Xamarin.csproj", "{05020288-1F3F-44B7-BE1D-E349AC07819B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrabalhoLab.Xamarin.Android", "..\TrabalhoLab.Xamarin.Android\TrabalhoLab.Xamarin.Android.csproj", "{8697FF85-A06D-48A5-AE2F-A4D4AB2B7F8F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CB394DB6-1783-4242-A0CD-FC8CB8BEB111}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB394DB6-1783-4242-A0CD-FC8CB8BEB111}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB394DB6-1783-4242-A0CD-FC8CB8BEB111}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB394DB6-1783-4242-A0CD-FC8CB8BEB111}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF3BF001-3A00-4F2E-B05F-5843F1543990}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF3BF001-3A00-4F2E-B05F-5843F1543990}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF3BF001-3A00-4F2E-B05F-5843F1543990}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF3BF001-3A00-4F2E-B05F-5843F1543990}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05020288-1F3F-44B7-BE1D-E349AC07819B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05020288-1F3F-44B7-BE1D-E349AC07819B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05020288-1F3F-44B7-BE1D-E349AC07819B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05020288-1F3F-44B7-BE1D-E349AC07819B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8697FF85-A06D-48A5-AE2F-A4D4AB2B7F8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8697FF85-A06D-48A5-AE2F-A4D4AB2B7F8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8697FF85-A06D-48A5-AE2F-A4D4AB2B7F8F}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{8697FF85-A06D-48A5-AE2F-A4D4AB2B7F8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8697FF85-A06D-48A5-AE2F-A4D4AB2B7F8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8697FF85-A06D-48A5-AE2F-A4D4AB2B7F8F}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CB394DB6-1783-4242-A0CD-FC8CB8BEB111} = {7294E363-4F81-4B56-945F-4C29E3F9F284}
+		{AF3BF001-3A00-4F2E-B05F-5843F1543990} = {AB97C6D5-B03E-40EC-BBC4-58E0041FA73A}
+		{05020288-1F3F-44B7-BE1D-E349AC07819B} = {EDE6724C-D653-477B-B82C-63709402409E}
+		{8697FF85-A06D-48A5-AE2F-A4D4AB2B7F8F} = {EDE6724C-D653-477B-B82C-63709402409E}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A542C86F-38E9-416B-87C8-FB35B35D6915}
+	EndGlobalSection
+EndGlobal

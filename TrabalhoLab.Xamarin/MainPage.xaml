@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:button="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+			xmlns:accordion="clr-namespace:Syncfusion.XForms.Accordion;assembly=Syncfusion.Expander.XForms"
+			x:Class="TrabalhoLab.Xamarin.MainPage"
+             Title="Listas De Compras" >
+    <StackLayout>
+        <ListView x:Name="listview"  
+             HasUnevenRows="True"  
+             ItemTapped="MainListView_ItemTapped">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <ViewCell.ContextActions>
+                            <MenuItem Text="Renomear" CommandParameter="{Binding .}" Clicked="RenomearMenuItem_Clicked"/>
+                            <MenuItem Text="Apagar" CommandParameter="{Binding .}" Clicked="ApagarMenuItem_Clicked"/>
+                        </ViewCell.ContextActions>
+                        <StackLayout Orientation="Vertical">
+                        <Label Text="{Binding Descricao}" Margin="0,10,0,10" FontSize="20" HorizontalTextAlignment="Center"/>
+                    </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Button Text="Adicionar" Clicked="Button_Clicked"></Button>
+    </StackLayout>
+</ContentPage>
+
+    

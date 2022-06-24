@@ -1,0 +1,19 @@
+﻿<Window x:Class="Lista_de_Compras___Projeto_LabSW.ListaWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Lista_de_Compras___Projeto_LabSW"
+        mc:Ignorable="d"
+        Title="Lista" Height="720" Width="1280" Closing="Window_Closing" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded" Topmost="True" Icon="/shopping-bag.png">
+    <Grid>
+        <TextBlock x:Name="txtblck_Lista" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="25" TextAlignment="Center"/>
+        <Button   x:Name="btn_adicionar" Content="Adicionar" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="200,0,0,25" FontSize="18" Click="btn_adicionar_Click" Height="59" Width="162"/>
+        <Button x:Name="btn_renomear" Content="Renomear" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,25" FontSize="18" Height="59" Width="162" Click="btn_renomear_Click"/>
+        <Button x:Name="btn_apagar" Content="Apagar" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,200,25" FontSize="18" Height="59" Width="162" Click="btn_apagar_Click"/>
+
+        <ScrollViewer x:Name="scroll_view" Margin="0,50,0,100" >
+            <Grid x:Name="grid"></Grid>
+        </ScrollViewer>
+    </Grid>
+</Window>

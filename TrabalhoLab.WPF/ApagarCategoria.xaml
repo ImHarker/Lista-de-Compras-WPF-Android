@@ -1,0 +1,13 @@
+﻿<Window x:Class="Lista_de_Compras___Projeto_LabSW.ApagarCategoria"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="ApagarCategoria" Height="180" Width="800" ResizeMode="NoResize" Topmost="True" WindowStartupLocation="CenterScreen" Icon="/shopping-bag.png">
+    <Grid Margin="0,0,0,0">
+        <ComboBox x:Name="combo_cat" HorizontalAlignment="Left" Margin="247,0,0,0" VerticalAlignment="Center" Width="242" FontSize="18"/>
+        <Label Content="Categoria" HorizontalAlignment="Left" Margin="123,0,0,0" VerticalAlignment="Center" FontSize="18"/>
+        <Button x:Name="btn_apagar" Content="Apagar" HorizontalAlignment="Left" Margin="627,0,0,0" VerticalAlignment="Center" FontSize="18" Height="57" Width="119" Click="btn_apagar_Click"/>
+    </Grid>
+</Window>

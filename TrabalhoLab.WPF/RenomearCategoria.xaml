@@ -1,0 +1,16 @@
+﻿<Window x:Class="Lista_de_Compras___Projeto_LabSW.RenomearCategoria"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Lista_de_Compras___Projeto_LabSW"
+        mc:Ignorable="d"
+        Title="RenomearCategoria" Height="180" Width="800" ResizeMode="NoResize" Topmost="True" WindowStartupLocation="CenterScreen" Icon="/shopping-bag.png">
+    <Grid Margin="0,0,0,0">
+        <ComboBox x:Name="combo_cat" HorizontalAlignment="Left" Margin="130,28,0,0" VerticalAlignment="Top" Width="242" FontSize="18"/>
+        <Label Content="Categoria" HorizontalAlignment="Left" Margin="32,26,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <Label Content="Nome" HorizontalAlignment="Left" Margin="32,91,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <Button x:Name="btn_renomear" Content="Renomear" HorizontalAlignment="Left" Margin="627,0,0,0" VerticalAlignment="Center" FontSize="18" Height="57" Width="119" Click="btn_apagar_Click"/>
+        <TextBox x:Name="txtbx_nome" HorizontalAlignment="Left" Margin="128,98,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="244" FontSize="18"/>
+    </Grid>
+</Window>

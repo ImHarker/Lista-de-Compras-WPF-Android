@@ -1,0 +1,18 @@
+﻿<Window x:Class="Lista_de_Compras___Projeto_LabSW.ListNameDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Lista_de_Compras___Projeto_LabSW"
+        mc:Ignorable="d"
+        Title="Alterar Texto" Height="160" Width="800" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Topmost="True" Icon="/shopping-bag.png">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="298*"/>
+            <ColumnDefinition Width="197*"/>
+        </Grid.ColumnDefinitions>
+        <Button x:Name="btn_adi" Content="Adicionar" HorizontalAlignment="Left" Margin="43,39,0,0" VerticalAlignment="Top" Height="53" Width="123" Click="Button_Click" FontSize="18" Grid.Column="1"/>
+        <TextBox x:Name="txtbx_title" HorizontalAlignment="Left" Margin="21,53,0,0" TextWrapping="Wrap" Text="A Minha Lista De Compras" VerticalAlignment="Top" Width="291" FontSize="18" Grid.ColumnSpan="2"/>
+
+    </Grid>
+</Window>

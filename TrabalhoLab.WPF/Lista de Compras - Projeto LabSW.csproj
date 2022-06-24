@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net6.0-windows</TargetFramework>
+		<RootNamespace>Lista_de_Compras___Projeto_LabSW</RootNamespace>
+		<Nullable>enable</Nullable>
+		<UseWPF>true</UseWPF>
+		<ApplicationIcon>shopping-bag.ico</ApplicationIcon>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Remove="shopping-bag.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Include="shopping-bag.ico" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Reference Include="TrabalhoLab.Domain">
+	    <HintPath>..\TrabalhoLab.Domain\bin\Debug\netstandard2.1\TrabalhoLab.Domain.dll</HintPath>
+	  </Reference>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Resource Include="shopping-bag.png" />
+	</ItemGroup>
+
+</Project>
