@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.1.32228.430
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lista de Compras - Projeto LabSW", "Lista de Compras - Projeto LabSW.csproj", "{CB394DB6-1783-4242-A0CD-FC8CB8BEB111}"
+	ProjectSection(ProjectDependencies) = postProject
+		{AF3BF001-3A00-4F2E-B05F-5843F1543990} = {AF3BF001-3A00-4F2E-B05F-5843F1543990}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1-Desktop", "1-Desktop", "{7294E363-4F81-4B56-945F-4C29E3F9F284}"
 EndProject
@@ -13,7 +16,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrabalhoLab.Domain", "..\Tr
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2-Mobile", "2-Mobile", "{EDE6724C-D653-477B-B82C-63709402409E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrabalhoLab.Xamarin", "..\TrabalhoLab.Xamarin\TrabalhoLab.Xamarin.csproj", "{05020288-1F3F-44B7-BE1D-E349AC07819B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrabalhoLab.Xamarin", "..\TrabalhoLab.Xamarin\TrabalhoLab.Xamarin.csproj", "{05020288-1F3F-44B7-BE1D-E349AC07819B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrabalhoLab.Xamarin.Android", "..\TrabalhoLab.Xamarin.Android\TrabalhoLab.Xamarin.Android.csproj", "{8697FF85-A06D-48A5-AE2F-A4D4AB2B7F8F}"
 EndProject

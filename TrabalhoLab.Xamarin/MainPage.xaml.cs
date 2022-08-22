@@ -84,5 +84,13 @@ namespace TrabalhoLab.Xamarin {
         async private void Settings_Clicked(object sender, EventArgs e) {
             await Navigation.PushAsync(new Settings());
         }
+
+        async private void Refresh_Clicked(object sender, EventArgs e) {
+            try {
+                app.Gestor.UpdateListaRequest("admin");
+            } catch (ValorInvalidoException err) {
+                await DisplayAlert("Erro!", err.Message, "Ok");
+            }
+        }
     }
 }

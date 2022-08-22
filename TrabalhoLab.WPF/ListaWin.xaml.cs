@@ -51,10 +51,14 @@ namespace Lista_de_Compras___Projeto_LabSW {
             foreach (Categoria c in app.Gestor.ListaAtual.Categorias) {
                 LoadCategoria(c);
             }
+            app.Gestor.SaveListas();
+
 
         }
         private void AdicionarCategoria(Categoria cat) {
             LoadCategoria(cat);
+            app.Gestor.SaveListas();
+
         }
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e) {
             App.Current.MainWindow.Show();
@@ -65,12 +69,9 @@ namespace Lista_de_Compras___Projeto_LabSW {
             listNameDialog.btn_adi.Content = "Adicionar";
             listNameDialog.txtbx_title.Text = "Categoria";
             if (listNameDialog.ShowDialog() == true) {
-                try
-                {
+                try {
                     app.Gestor.ListaAtual.AdicionarCategoria(listNameDialog.txtbx_title.Text);
-                }
-                catch (ValorInvalidoException err)
-                {
+                } catch (ValorInvalidoException err) {
                     MessageBox.Show(err.Message, "Erro!", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
@@ -87,21 +88,18 @@ namespace Lista_de_Compras___Projeto_LabSW {
                     itemWindow.txtbx_qtd.Text = it.Qtd;
                     foreach (Categoria c in app.Gestor.ListaAtual.Categorias)
                         itemWindow.combobx_cat.Items.Add(c.Nome);
-                        if (itemWindow.ShowDialog() == true)
-                        {
-                            Item item = new Item();
-                            item.Qtd = itemWindow.txtbx_qtd.Text;
-                            item.Descricao = itemWindow.txtbx_nome.Text;
-                    try
-                    {
+                    if (itemWindow.ShowDialog() == true) {
+                        Item item = new Item();
+                        item.Qtd = itemWindow.txtbx_qtd.Text;
+                        item.Descricao = itemWindow.txtbx_nome.Text;
+                        try {
                             item.ValidaDados();
                             app.Gestor.ListaAtual.Categorias[i].RemoveItem(index);
                             app.Gestor.ListaAtual.Categorias[itemWindow.combobx_cat.SelectedIndex].AddItem(item);
-                    }catch(ValorInvalidoException err)
-                    {
-                        MessageBox.Show(err.Message , "Erro!", MessageBoxButton.OK, MessageBoxImage.Error);
-                    }
+                        } catch (ValorInvalidoException err) {
+                            MessageBox.Show(err.Message, "Erro!", MessageBoxButton.OK, MessageBoxImage.Error);
                         }
+                    }
 
                 }
             }
@@ -129,13 +127,10 @@ namespace Lista_de_Compras___Projeto_LabSW {
                         Item item = new Item();
                         item.Qtd = itemWindow.txtbx_qtd.Text;
                         item.Descricao = itemWindow.txtbx_nome.Text;
-                        try
-                        {
+                        try {
                             item.ValidaDados();
                             app.Gestor.ListaAtual.Categorias[itemWindow.combobx_cat.SelectedIndex].AddItem(item);
-                        }
-                        catch (ValorInvalidoException err)
-                        {
+                        } catch (ValorInvalidoException err) {
                             MessageBox.Show(err.Message, "Erro!", MessageBoxButton.OK, MessageBoxImage.Error);
                         }
 
@@ -148,16 +143,14 @@ namespace Lista_de_Compras___Projeto_LabSW {
         }
 
         private void btn_apagar_Click(object sender, RoutedEventArgs e) {
-            if (app.Gestor.ListaAtual.Categorias.Count > app.Gestor.ListaAtual.CategoriasPermanentes)
-            {
+            if (app.Gestor.ListaAtual.Categorias.Count > app.Gestor.ListaAtual.CategoriasPermanentes) {
                 ApagarCategoria apagarCategoria = new ApagarCategoria();
                 apagarCategoria.Show();
-            }
-            else
+            } else
                 MessageBox.Show("Ainda não criou nenhuma categoria.", "Erro!", MessageBoxButton.OK, MessageBoxImage.Error);
-           
-            }
-        
+
+        }
+
 
         private void Window_Loaded(object sender, RoutedEventArgs e) {
             for (int i = 0; i < app.Gestor.ListaAtual.Categorias.Count; i++)
@@ -226,15 +219,15 @@ namespace Lista_de_Compras___Projeto_LabSW {
                         app.Gestor.ListaAtual.Categorias[i].Items[j].Comprado = (bool)chk.IsChecked;
                     }
                 }
+            app.Gestor.SaveListas();
+
         }
 
         private void btn_renomear_Click(object sender, RoutedEventArgs e) {
-            if (app.Gestor.ListaAtual.Categorias.Count > app.Gestor.ListaAtual.CategoriasPermanentes)
-            {
+            if (app.Gestor.ListaAtual.Categorias.Count > app.Gestor.ListaAtual.CategoriasPermanentes) {
                 RenomearCategoria renomear = new RenomearCategoria();
                 renomear.Show();
-            }
-            else
+            } else
                 MessageBox.Show("Ainda não criou nenhuma categoria.", "Erro!", MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }

@@ -12075,46 +12075,49 @@ namespace TrabalhoLab.Xamarin.Android
 			public const int notify_panel_notification_icon_bg = 2131165358;
 			
 			// aapt resource value: 0x7F0700AF
-			public const int settings = 2131165359;
+			public const int refresh = 2131165359;
 			
 			// aapt resource value: 0x7F0700B0
-			public const int sfcheckbox_animation = 2131165360;
+			public const int settings = 2131165360;
 			
 			// aapt resource value: 0x7F0700B1
-			public const int sfcheckbox_checked = 2131165361;
+			public const int sfcheckbox_animation = 2131165361;
 			
 			// aapt resource value: 0x7F0700B2
-			public const int sfcheckbox_checked_indeterminate = 2131165362;
+			public const int sfcheckbox_checked = 2131165362;
 			
 			// aapt resource value: 0x7F0700B3
-			public const int sfcheckbox_checked_unchecked = 2131165363;
+			public const int sfcheckbox_checked_indeterminate = 2131165363;
 			
 			// aapt resource value: 0x7F0700B4
-			public const int sfcheckbox_indeterminate = 2131165364;
+			public const int sfcheckbox_checked_unchecked = 2131165364;
 			
 			// aapt resource value: 0x7F0700B5
-			public const int sfcheckbox_indeterminate_checked = 2131165365;
+			public const int sfcheckbox_indeterminate = 2131165365;
 			
 			// aapt resource value: 0x7F0700B6
-			public const int sfcheckbox_indeterminate_unchecked = 2131165366;
+			public const int sfcheckbox_indeterminate_checked = 2131165366;
 			
 			// aapt resource value: 0x7F0700B7
-			public const int sfcheckbox_unchecked = 2131165367;
+			public const int sfcheckbox_indeterminate_unchecked = 2131165367;
 			
 			// aapt resource value: 0x7F0700B8
-			public const int sfcheckbox_unchecked_checked = 2131165368;
+			public const int sfcheckbox_unchecked = 2131165368;
 			
 			// aapt resource value: 0x7F0700B9
-			public const int sfcheckbox_unchecked_indeterminate = 2131165369;
+			public const int sfcheckbox_unchecked_checked = 2131165369;
 			
 			// aapt resource value: 0x7F0700BA
-			public const int test_custom_background = 2131165370;
+			public const int sfcheckbox_unchecked_indeterminate = 2131165370;
 			
 			// aapt resource value: 0x7F0700BB
-			public const int tooltip_frame_dark = 2131165371;
+			public const int test_custom_background = 2131165371;
 			
 			// aapt resource value: 0x7F0700BC
-			public const int tooltip_frame_light = 2131165372;
+			public const int tooltip_frame_dark = 2131165372;
+			
+			// aapt resource value: 0x7F0700BD
+			public const int tooltip_frame_light = 2131165373;
 			
 			static Drawable()
 			{

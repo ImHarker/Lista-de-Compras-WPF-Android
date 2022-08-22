@@ -35,19 +35,21 @@ namespace Lista_de_Compras___Projeto_LabSW {
             foreach (Lista l in app.Gestor.GestorList) {
                 lstbx_listas.Items.Add(l.Descricao);
             }
+            app.Gestor.SaveListas();
+
         }
         private void novaLista(Lista lista) {
             lstbx_listas.Items.Add(lista.Descricao);
+            app.Gestor.SaveListas();
+
         }
 
         private void btn_add_Click(object sender, RoutedEventArgs e) {
             ListNameDialog listNameDialog = new ListNameDialog();
             if (listNameDialog.ShowDialog() == true)
-                try
-                {
+                try {
                     app.Gestor.AdicionarLista(listNameDialog.txtbx_title.Text);
-                }
-                catch (ValorInvalidoException err){
+                } catch (ValorInvalidoException err) {
 
                     MessageBox.Show(err.Message, "Erro!", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
@@ -56,35 +58,28 @@ namespace Lista_de_Compras___Projeto_LabSW {
         private void btn_alt_Click(object sender, RoutedEventArgs e) {
             if (!lstbx_listas.Items.IsEmpty) {
                 if (lstbx_listas.SelectedIndex != -1) {
-            ListNameDialog listNameDialog = new ListNameDialog();
+                    ListNameDialog listNameDialog = new ListNameDialog();
                     listNameDialog.btn_adi.Content = "Alterar";
                     listNameDialog.txtbx_title.Text = lstbx_listas.SelectedItem.ToString();
                     if (listNameDialog.ShowDialog() == true)
-                        try
-                        {
+                        try {
                             app.Gestor.RenomearLista(lstbx_listas.SelectedIndex, listNameDialog.txtbx_title.Text);
-                        }
-                        catch (ValorInvalidoException err)
-                        {
+                        } catch (ValorInvalidoException err) {
 
                             MessageBox.Show(err.Message, "Erro!", MessageBoxButton.OK, MessageBoxImage.Error);
                         }
-                }
-                else
+                } else
                     MessageBox.Show("Por favor selecione uma Lista", "Erro!", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            else
+            } else
                 MessageBox.Show("Ainda não criou nenhuma Lista.", "Erro!", MessageBoxButton.OK, MessageBoxImage.Error);
         }
         private void btn_del_Click(object sender, RoutedEventArgs e) {
             if (!lstbx_listas.Items.IsEmpty) {
                 if (lstbx_listas.SelectedIndex != -1) {
                     app.Gestor.ApagarLista(lstbx_listas.SelectedIndex);
-                }
-                else
+                } else
                     MessageBox.Show("Por favor selecione uma Lista", "Erro!", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            else
+            } else
                 MessageBox.Show("Ainda não criou nenhuma Lista.", "Erro!", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
@@ -104,8 +99,12 @@ namespace Lista_de_Compras___Projeto_LabSW {
             loginRegistarWindow.Show();
         }
 
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e) {
-            app.Gestor.SaveListas();
+        private void Button_Click(object sender, RoutedEventArgs e) {
+            try {
+                app.Gestor.UpdateListaRequest("admin");
+            } catch (ValorInvalidoException err) {
+                MessageBox.Show(err.Message, "Erro!", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 

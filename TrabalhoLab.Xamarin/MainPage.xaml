@@ -6,7 +6,9 @@
 			x:Class="TrabalhoLab.Xamarin.MainPage"
              Title="Listas De Compras" >
     <ContentPage.ToolbarItems>
-        <ToolbarItem Name="Settings" Order="Primary" Icon="settings.png" Text="Item 1" Priority="0" Clicked="Settings_Clicked"/>
+        <ToolbarItem Name="Settings" Order="Primary" IconImageSource="settings.png" Text="Settings" Priority="1" Clicked="Settings_Clicked"/>
+        <ToolbarItem Name="Refresh" Order="Primary" IconImageSource="refresh.png"  Text="Refresh" Priority="0" Clicked="Refresh_Clicked"/>
+
     </ContentPage.ToolbarItems>
     <StackLayout>
         <ListView x:Name="listview"  
