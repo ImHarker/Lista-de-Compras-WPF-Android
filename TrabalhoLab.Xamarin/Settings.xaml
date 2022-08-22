@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TrabalhoLab.Xamarin.Settings"
+             Title="Definições">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="ProfileIcon" Order="Primary" IconImageSource="" Priority="0" Clicked="Settings_Clicked"/>
+    </ContentPage.ToolbarItems>
+    <StackLayout>
+        <Grid VerticalOptions="Center" Margin="0,20,0,0">
+            <Label Margin="10,0,0,0" FontSize="18" VerticalTextAlignment="Center" Grid.Row="0" Grid.Column="0" Text="1" ></Label>
+            <Switch Margin="0,0,25,0" Scale="1.2" Grid.Row="0" Grid.Column="1" VerticalOptions="Center" x:Name="s1">
+                <Switch.Style>
+                    <Style TargetType="Switch">
+                        <Setter Property="OnColor" Value="#00b80c"/>
+                        <Setter Property="ThumbColor" Value="#ababab"/>
+                    </Style>
+
+                </Switch.Style>
+            </Switch>
+            <Label Margin="10,0,0,0" FontSize="18" VerticalTextAlignment="Center" Grid.Row="1" Grid.Column="0" Text="2" ></Label>
+            <Switch Margin="0,0,25,0" Scale="1.2" Grid.Row="1" Grid.Column="1" VerticalOptions="Center" x:Name="s2">
+                <Switch.Style>
+                    <Style TargetType="Switch">
+                        <Setter Property="OnColor" Value="#00b80c"/>
+                        <Setter Property="ThumbColor" Value="#ababab"/>
+                    </Style>
+
+                </Switch.Style>
+            </Switch>
+            <Label Margin="10,0,0,0" FontSize="18" VerticalTextAlignment="Center" Grid.Row="2" Grid.Column="0" Text="3" ></Label>
+            <Switch Margin="0,0,25,0" Scale="1.2" Grid.Row="2" Grid.Column="1" VerticalOptions="Center" x:Name="s3">
+                <Switch.Style>
+                    <Style TargetType="Switch">
+                        <Setter Property="OnColor" Value="#00b80c"/>
+                        <Setter Property="ThumbColor" Value="#ababab"/>
+                    </Style>
+
+                </Switch.Style>
+            </Switch>
+            <Label Margin="10,0,0,0" FontSize="18" VerticalTextAlignment="Center" Grid.Row="3" Grid.Column="0" Text="4" ></Label>
+            <Switch Margin="0,0,25,0" Scale="1.2" Grid.Row="3" Grid.Column="1" VerticalOptions="Center" x:Name="s4">
+                <Switch.Style>
+                    <Style TargetType="Switch">
+                        <Setter Property="OnColor" Value="#00b80c"/>
+                        <Setter Property="ThumbColor" Value="#ababab"/>
+                    </Style>
+
+                </Switch.Style>
+            </Switch>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+        </Grid>
+    </StackLayout>
+</ContentPage> 

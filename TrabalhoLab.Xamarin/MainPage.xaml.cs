@@ -7,21 +7,15 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace TrabalhoLab.Xamarin
-{
-    public partial class MainPage : ContentPage
-    {
+namespace TrabalhoLab.Xamarin {
+    public partial class MainPage : ContentPage {
         private App app;
-        public MainPage()
-        {
+        public MainPage() {
             app = App.Current as App;
             InitializeComponent();
-            try
-            {
+            try {
                 app.Gestor.LoadListas();
-            }
-            catch (System.IO.FileNotFoundException e)
-            {
+            } catch (System.IO.FileNotFoundException e) {
             }
 
 
@@ -31,72 +25,64 @@ namespace TrabalhoLab.Xamarin
             listview.ItemsSource = app.Gestor.GestorList;
 
         }
-         private void atualizaListaa(Lista lista)
-        {
+        private void atualizaListaa(Lista lista) {
             listview.ItemsSource = null;
             listview.ItemsSource = app.Gestor.GestorList;
-                app.Gestor.SaveListas();
-            
+            app.Gestor.SaveListas();
+
         }
-        private void atualizaLista()
-        {
+        private void atualizaLista() {
             listview.ItemsSource = null;
             listview.ItemsSource = app.Gestor.GestorList;
             app.Gestor.SaveListas();
         }
-        async private void MainListView_ItemTapped(object sender, ItemTappedEventArgs e)
-        {
+        async private void MainListView_ItemTapped(object sender, ItemTappedEventArgs e) {
             int index = e.ItemIndex;
             app.Gestor.ListaAtual = app.Gestor.GestorList[index];
             await Navigation.PushAsync(new Categorias());
 
-               ((ListView)sender).SelectedItem = null;
+            ((ListView)sender).SelectedItem = null;
 
 
         }
 
-       async private void Button_Clicked(object sender, EventArgs e)
-        {
+        async private void Button_Clicked(object sender, EventArgs e) {
 
-            string answer = await DisplayPromptAsync("Criar Lista","Nome da Lista");
-            if(answer != null)
-            try
-            {
-                app.Gestor.AdicionarLista(answer);
-            }
-            catch (ValorInvalidoException err)
-            {
-                await DisplayAlert("Erro!",err.Message, "Ok");
-            }
+            string answer = await DisplayPromptAsync("Criar Lista", "Nome da Lista");
+            if (answer != null)
+                try {
+                    app.Gestor.AdicionarLista(answer);
+                } catch (ValorInvalidoException err) {
+                    await DisplayAlert("Erro!", err.Message, "Ok");
+                }
 
         }
 
-        private void ApagarMenuItem_Clicked(object sender, EventArgs e)
-        {
+        private void ApagarMenuItem_Clicked(object sender, EventArgs e) {
             var mi = ((MenuItem)sender);
             var list = mi.CommandParameter as Lista;
             var index = (listview.ItemsSource as List<Lista>).IndexOf(list);
-                    app.Gestor.ApagarLista(index);
+            app.Gestor.ApagarLista(index);
 
         }
 
-        async private void RenomearMenuItem_Clicked(object sender, EventArgs e)
-        {
+        async private void RenomearMenuItem_Clicked(object sender, EventArgs e) {
             string answer = await DisplayPromptAsync("Renomear Lista", "Nome da Lista");
             var mi = ((MenuItem)sender);
             var list = mi.CommandParameter as Lista;
             var index = (listview.ItemsSource as List<Lista>).IndexOf(list);
-            if(answer != null)
-            try
-            {
-                app.Gestor.RenomearLista(index, answer);
-            }
-            catch (ValorInvalidoException err)
-            {
+            if (answer != null)
+                try {
+                    app.Gestor.RenomearLista(index, answer);
+                } catch (ValorInvalidoException err) {
 
-                await DisplayAlert("Erro!", err.Message, "Ok");
-            }
+                    await DisplayAlert("Erro!", err.Message, "Ok");
+                }
 
+        }
+
+        async private void Settings_Clicked(object sender, EventArgs e) {
+            await Navigation.PushAsync(new Settings());
         }
     }
 }
