@@ -14,7 +14,7 @@ The XML file contains all the data from the app.
 
 
 ### Android
-We couldn't get the .apk to work/install outside of testing/developing environment. We could run the app using Android Emulator (Pixel 2 with 4GB of RAM).
+You can archive and self sign the app to install it or you can run the app in debug mode or using Android Emulator (we used Pixel 2 with 4GB of RAM).
 
 ## Building the Project
 The .sln file is located inside ```TrabalhoLab.WPF```.
