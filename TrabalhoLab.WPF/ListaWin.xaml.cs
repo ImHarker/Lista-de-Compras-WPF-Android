@@ -94,6 +94,7 @@ namespace Lista_de_Compras___Projeto_LabSW {
                         item.Descricao = itemWindow.txtbx_nome.Text;
                         try {
                             item.ValidaDados();
+                            app.Gestor.UpdateTimestamp();
                             app.Gestor.ListaAtual.Categorias[i].RemoveItem(index);
                             app.Gestor.ListaAtual.Categorias[itemWindow.combobx_cat.SelectedIndex].AddItem(item);
                         } catch (ValorInvalidoException err) {
@@ -110,6 +111,7 @@ namespace Lista_de_Compras___Projeto_LabSW {
             for (int i = 0; i < categorias.Count; i++) {
                 int index = categorias[i].SelectedIndex;
                 if (index != -1) {
+                    app.Gestor.UpdateTimestamp();
                     app.Gestor.ListaAtual.Categorias[i].RemoveItem(index);
                 }
             }
@@ -129,6 +131,7 @@ namespace Lista_de_Compras___Projeto_LabSW {
                         item.Descricao = itemWindow.txtbx_nome.Text;
                         try {
                             item.ValidaDados();
+                            app.Gestor.UpdateTimestamp();
                             app.Gestor.ListaAtual.Categorias[itemWindow.combobx_cat.SelectedIndex].AddItem(item);
                         } catch (ValorInvalidoException err) {
                             MessageBox.Show(err.Message, "Erro!", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -216,6 +219,7 @@ namespace Lista_de_Compras___Projeto_LabSW {
             for (int i = 0; i < categorias.Count; i++)
                 for (int j = 0; j < categorias[i].Items.Count; j++) {
                     if (categorias[i].Items[j] == sender) {
+                        app.Gestor.UpdateTimestamp();
                         app.Gestor.ListaAtual.Categorias[i].Items[j].Comprado = (bool)chk.IsChecked;
                     }
                 }

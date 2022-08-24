@@ -19,6 +19,7 @@ namespace Lista_de_Compras___Projeto_LabSW {
 
         public GestorListas() {
             GestorList = new List<Lista>();
+            Timestamp = 0;
         }
 
         public void AdicionarLista(string nome) {
@@ -45,11 +46,10 @@ namespace Lista_de_Compras___Projeto_LabSW {
                 ListaRemovida();
             }
         }
-
-        public void SaveListas() {
+        public XDocument ListaToXML() {
             XDocument doc = new XDocument();
             doc.Add(new XElement("ListasDeCompras"));
-            doc.Element("ListasDeCompras").Add(new XAttribute("timestamp", Convert.ToString((int)DateTime.Now.Subtract(new DateTime(1970, 1, 1)).TotalSeconds)));
+            doc.Element("ListasDeCompras").Add(new XAttribute("timestamp", Timestamp));
             doc.Element("ListasDeCompras").Add(new XElement("Listas"));
             XElement listas = doc.Root.Element("Listas");
             foreach (Lista lista in GestorList) {
@@ -70,9 +70,19 @@ namespace Lista_de_Compras___Projeto_LabSW {
                 }
                 listas.Add(list);
             }
+            return doc;
+        }
+
+        public void UpdateTimestamp() {
+            Timestamp = (int)DateTime.Now.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
+        }
+
+        public void SaveListas() {
+            XDocument doc = ListaToXML();
             doc.Save(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Listas.xml"));
 
         }
+
         public void LoadListas() {
             XDocument doc = XDocument.Load(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Listas.xml"));
             Timestamp = Convert.ToDouble(doc.Element("ListasDeCompras").Attribute("timestamp").Value);
@@ -100,11 +110,49 @@ namespace Lista_de_Compras___Projeto_LabSW {
             }
         }
 
-        public void UpdateListaRequest(string user) {
+        public double GetTimestamp(XDocument doc) {
+            return Convert.ToDouble(doc.Element("ListasDeCompras").Attribute("timestamp").Value);
+
+        }
+        public void UpdateLista(XDocument doc) {
             while (GestorList.Count != 0) {
                 ApagarLista(0);
             }
+            Timestamp = Convert.ToDouble(doc.Element("ListasDeCompras").Attribute("timestamp").Value);
+            XElement listas = doc.Root.Element("Listas");
+            foreach (XElement lista in listas.Elements("Lista")) {
+                Lista list = new Lista();
+                list.Categorias.Clear();
+                list.Descricao = lista.Attribute("Descricao").Value;
+                foreach (XElement categoria in lista.Elements("Categoria")) {
+                    Categoria catg = new Categoria(categoria.Attribute("Nome").Value, bool.Parse(categoria.Attribute("Permanente").Value));
+                    foreach (XElement produto in categoria.Elements("Produto")) {
+                        Item item = new Item();
+                        item.Descricao = produto.Attribute("Descricao").Value;
+                        item.Qtd = produto.Attribute("Quantidade").Value;
+                        item.Comprado = bool.Parse(produto.Attribute("Comprado").Value);
+                        catg.Items.Add(item);
+                    }
+                    list.Categorias.Add(catg);
+                }
+                GestorList.Add(list);
+                if (ListaAtualizada != null) {
+                    ListaAtualizada();
+                }
+            }
+            SaveListas();
+        }
 
+        public void UpdateListaPOSTRequest(string user) {
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://xxx.xxx.xxx.xxx/lista?username=" + user + "&lista=" + Uri.EscapeUriString(ListaToXML().ToString()));
+            request.Method = "POST";
+            try {
+                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            } catch (System.Net.WebException e) {
+                throw new ValorInvalidoException("Não foi possível conectar ao servidor. Verifique a conexão ou tente mais tarde.");
+            }
+        }
+        public XDocument UpdateListaGETRequest(string user) {
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://xxx.xxx.xxx.xxx/lista?username=" + user);
             request.Method = "GET";
             request.ContentType = "application/json";
@@ -113,29 +161,7 @@ namespace Lista_de_Compras___Projeto_LabSW {
                 StreamReader reader = new StreamReader(response.GetResponseStream());
                 string resposta = reader.ReadToEnd();
                 XDocument doc = XDocument.Parse(resposta);
-                Timestamp = Convert.ToDouble(doc.Element("ListasDeCompras").Attribute("timestamp").Value); // verificar timestamps com servidor
-                XElement listas = doc.Root.Element("Listas");
-                foreach (XElement lista in listas.Elements("Lista")) {
-                    Lista list = new Lista();
-                    list.Categorias.Clear();
-                    list.Descricao = lista.Attribute("Descricao").Value;
-                    foreach (XElement categoria in lista.Elements("Categoria")) {
-                        Categoria catg = new Categoria(categoria.Attribute("Nome").Value, bool.Parse(categoria.Attribute("Permanente").Value));
-                        foreach (XElement produto in categoria.Elements("Produto")) {
-                            Item item = new Item();
-                            item.Descricao = produto.Attribute("Descricao").Value;
-                            item.Qtd = produto.Attribute("Quantidade").Value;
-                            item.Comprado = bool.Parse(produto.Attribute("Comprado").Value);
-                            catg.Items.Add(item);
-                        }
-                        list.Categorias.Add(catg);
-                    }
-                    GestorList.Add(list);
-                    if (ListaAtualizada != null) {
-                        ListaAtualizada();
-                    }
-                }
-                SaveListas();
+                return doc;
             } catch (System.Net.WebException e) {
                 throw new ValorInvalidoException("Não foi possível conectar ao servidor. Verifique a conexão ou tente mais tarde.");
             }

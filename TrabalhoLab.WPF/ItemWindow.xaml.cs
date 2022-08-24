@@ -17,12 +17,15 @@ namespace Lista_de_Compras___Projeto_LabSW {
     /// Interaction logic for ItemWindow.xaml
     /// </summary>
     public partial class ItemWindow : Window {
+        private App app;
         public ItemWindow() {
             InitializeComponent();
+            app = App.Current as App;
         }
 
         private void btn_Adicionar_Click(object sender, RoutedEventArgs e) {
-                DialogResult = true;
+            DialogResult = true;
+            app.Gestor.UpdateTimestamp();
             this.Close();
 
 

@@ -30,8 +30,10 @@ namespace Lista_de_Compras___Projeto_LabSW {
         }
 
         private void btn_apagar_Click(object sender, RoutedEventArgs e) {
-            if (combo_cat.Items.Count != 0)
+            if (combo_cat.Items.Count != 0) {
+                app.Gestor.UpdateTimestamp();
                 app.Gestor.ListaAtual.ApagarCategoria(combo_cat.SelectedIndex + app.Gestor.ListaAtual.CategoriasPermanentes);
+            }
             this.Close();
         }
     }

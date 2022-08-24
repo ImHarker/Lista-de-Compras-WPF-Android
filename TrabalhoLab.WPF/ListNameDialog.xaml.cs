@@ -17,16 +17,19 @@ namespace Lista_de_Compras___Projeto_LabSW {
     /// Interaction logic for ListNameDialog.xaml
     /// </summary>
     public partial class ListNameDialog : Window {
+        private App app;
         public ListNameDialog() {
             InitializeComponent();
+            app = App.Current as App;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e) {
             DialogResult = true;
+            app.Gestor.UpdateTimestamp();
             this.Close();
 
         }
 
-   
+
     }
 }

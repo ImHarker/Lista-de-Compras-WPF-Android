@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml.Linq;
 
 namespace Lista_de_Compras___Projeto_LabSW {
     /// <summary>
@@ -48,6 +49,7 @@ namespace Lista_de_Compras___Projeto_LabSW {
             ListNameDialog listNameDialog = new ListNameDialog();
             if (listNameDialog.ShowDialog() == true)
                 try {
+                    app.Gestor.UpdateTimestamp();
                     app.Gestor.AdicionarLista(listNameDialog.txtbx_title.Text);
                 } catch (ValorInvalidoException err) {
 
@@ -63,6 +65,7 @@ namespace Lista_de_Compras___Projeto_LabSW {
                     listNameDialog.txtbx_title.Text = lstbx_listas.SelectedItem.ToString();
                     if (listNameDialog.ShowDialog() == true)
                         try {
+                            app.Gestor.UpdateTimestamp();
                             app.Gestor.RenomearLista(lstbx_listas.SelectedIndex, listNameDialog.txtbx_title.Text);
                         } catch (ValorInvalidoException err) {
 
@@ -76,6 +79,7 @@ namespace Lista_de_Compras___Projeto_LabSW {
         private void btn_del_Click(object sender, RoutedEventArgs e) {
             if (!lstbx_listas.Items.IsEmpty) {
                 if (lstbx_listas.SelectedIndex != -1) {
+                    app.Gestor.UpdateTimestamp();
                     app.Gestor.ApagarLista(lstbx_listas.SelectedIndex);
                 } else
                     MessageBox.Show("Por favor selecione uma Lista", "Erro!", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -101,7 +105,30 @@ namespace Lista_de_Compras___Projeto_LabSW {
 
         private void Button_Click(object sender, RoutedEventArgs e) {
             try {
-                app.Gestor.UpdateListaRequest("admin");
+                XDocument doc = app.Gestor.UpdateListaGETRequest("admin");
+                XDocument local = new XDocument(app.Gestor.ListaToXML());
+                XDocument server = new XDocument(doc);
+                local.Element("ListasDeCompras").Attribute("timestamp").Remove();
+                server.Element("ListasDeCompras").Attribute("timestamp").Remove();
+                if (local.ToString().GetHashCode() == server.ToString().GetHashCode())
+                    MessageBox.Show("A lista já se encontra atualizada!", "Informação!", MessageBoxButton.OK, MessageBoxImage.Information);
+                else {
+                    if (app.Gestor.Timestamp > app.Gestor.GetTimestamp(doc)) {
+                        if (MessageBox.Show("O servidor tem uma versão de uma data anterior! Deseja, mesmo assim, atualizar a lista?", "Atenção!", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes) {
+                            app.Gestor.UpdateLista(doc);
+
+                        } else if (MessageBox.Show("Deseja atualizar a lista do servidor?", "Atenção!", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes) {
+                            app.Gestor.UpdateListaPOSTRequest("admin");
+                        }
+
+                    } else if (app.Gestor.Timestamp < app.Gestor.GetTimestamp(doc)) {
+                        if (MessageBox.Show("O servidor tem uma versão mais recente! Deseja atualizar a lista?", "Atenção!", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes) {
+                            app.Gestor.UpdateLista(doc);
+                        } else if (MessageBox.Show("Deseja sobrepor a lista do servidor?", "Atenção!", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes) {
+                            app.Gestor.UpdateListaPOSTRequest("admin");
+                        }
+                    }
+                }
             } catch (ValorInvalidoException err) {
                 MessageBox.Show(err.Message, "Erro!", MessageBoxButton.OK, MessageBoxImage.Error);
             }

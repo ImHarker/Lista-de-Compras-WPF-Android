@@ -30,14 +30,13 @@ namespace Lista_de_Compras___Projeto_LabSW {
         }
 
         private void btn_apagar_Click(object sender, RoutedEventArgs e) {
-                try
-                {
-                    app.Gestor.ListaAtual.RenomearCategoria(combo_cat.SelectedIndex + app.Gestor.ListaAtual.CategoriasPermanentes, txtbx_nome.Text);
-                }catch (ValorInvalidoException err)
-                {
-                    MessageBox.Show(err.Message, "Erro!", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-         
+            try {
+                app.Gestor.UpdateTimestamp();
+                app.Gestor.ListaAtual.RenomearCategoria(combo_cat.SelectedIndex + app.Gestor.ListaAtual.CategoriasPermanentes, txtbx_nome.Text);
+            } catch (ValorInvalidoException err) {
+                MessageBox.Show(err.Message, "Erro!", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
             this.Close();
         }
     }
