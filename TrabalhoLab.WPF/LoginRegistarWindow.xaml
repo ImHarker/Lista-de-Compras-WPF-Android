@@ -6,29 +6,31 @@
         xmlns:local="clr-namespace:Lista_de_Compras___Projeto_LabSW"
         mc:Ignorable="d"
         Title="LoginRegistarWindow" Height="450" Width="800" ResizeMode="NoResize" Topmost="True" WindowStartupLocation="CenterScreen" Icon="/shopping-bag.png">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="337*"/>
-            <ColumnDefinition Width="63*"/>
-        </Grid.ColumnDefinitions>
-        <Button Content="Login" HorizontalAlignment="Left" Margin="99,379,0,0" VerticalAlignment="Top" FontSize="18" Width="186"/>
-        <Button Content="Registar" HorizontalAlignment="Left" Margin="518,379,0,0" VerticalAlignment="Top" FontSize="18" Width="186" Grid.ColumnSpan="2"/>
-        <Line X1="0" X2="0" Y1="0" Y2="450" HorizontalAlignment="Left" Stroke="Black" StrokeThickness="0.5" Margin="400,0,0,0"/>
-        <Label Content="Email" HorizontalAlignment="Left" Margin="25,155,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <Label Content="Password" HorizontalAlignment="Left" Margin="25,189,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <TextBox HorizontalAlignment="Left" Margin="155,159,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="181" FontSize="18"/>
-        <TextBox HorizontalAlignment="Left" Margin="155,197,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="181" FontSize="18"/>
-        <Label Content="Email" HorizontalAlignment="Left" Margin="422,100,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <Label Content="Username" HorizontalAlignment="Left" Margin="422,134,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <TextBox HorizontalAlignment="Left" Margin="552,104,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="181" FontSize="18" Grid.ColumnSpan="2"/>
-        <TextBox HorizontalAlignment="Left" Margin="552,142,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="181" FontSize="18" Grid.ColumnSpan="2"/>
-        <Label Content="Password" HorizontalAlignment="Left" Margin="422,180,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <Label Content="País" HorizontalAlignment="Left" Margin="422,214,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <TextBox HorizontalAlignment="Left" Margin="552,184,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="181" FontSize="18" Grid.ColumnSpan="2"/>
-        <TextBox HorizontalAlignment="Left" Margin="552,222,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="181" FontSize="18" Grid.ColumnSpan="2"/>
-        <Label Content="Nome" HorizontalAlignment="Left" Margin="422,69,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <TextBox HorizontalAlignment="Left" Margin="552,73,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="181" FontSize="18" Grid.ColumnSpan="2"/>
-        <Label Content="Foto" HorizontalAlignment="Left" Margin="424,253,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <Button Content="Escolher foto" HorizontalAlignment="Left" Margin="552,259,0,0" VerticalAlignment="Top" FontSize="18" Width="186" Grid.ColumnSpan="2"/>
-    </Grid>
+    <TabControl>
+        <TabItem Header="Login">
+            <Grid>
+                <Button x:Name="bttn_login" Content="Login" HorizontalAlignment="Center" Margin="0,249,0,0" VerticalAlignment="Top" Height="50" Width="120" FontSize="18"/>
+                <Label Content="Username" HorizontalAlignment="Center" Margin="0,49,0,0" VerticalAlignment="Top" FontSize="18"/>
+                <TextBox x:Name="txt_user" HorizontalAlignment="Center" Margin="0,86,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="174" FontSize="18"/>
+                <Label Content="Password" HorizontalAlignment="Center" Margin="0,127,0,0" VerticalAlignment="Top" FontSize="18"/>
+                <PasswordBox x:Name="txt_passwd" HorizontalAlignment="Center" Margin="0,164,0,0" VerticalAlignment="Top" Width="174" FontSize="18"/>
+            </Grid>
+        </TabItem>
+        <TabItem Header="Register">
+            <Grid>
+                <Button x:Name="bttn_register" Content="Register" HorizontalAlignment="Center" Margin="0,340,0,0" VerticalAlignment="Top" Height="50" Width="120" FontSize="18"/>
+                <Label Content="Username" HorizontalAlignment="Center" Margin="0,-3,0,0" VerticalAlignment="Top" FontSize="18"/>
+                <TextBox x:Name="txt_user1" HorizontalAlignment="Center" Margin="0,34,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="174" FontSize="18"/>
+                <Label Content="Password" HorizontalAlignment="Center" Margin="0,134,0,0" VerticalAlignment="Top" FontSize="18"/>
+                <PasswordBox x:Name="txt_passwd1" HorizontalAlignment="Center" VerticalAlignment="Top" Width="174" FontSize="18" Margin="0,171,0,0"/>
+                <Label Content="Confirm Password" HorizontalAlignment="Center" Margin="0,201,0,0" VerticalAlignment="Top" FontSize="18"/>
+                <PasswordBox x:Name="txt_passwd2" HorizontalAlignment="Center" Margin="0,238,0,0" VerticalAlignment="Top" Width="174" FontSize="18"/>
+                <Label Content="Email" HorizontalAlignment="Center" Margin="0,67,0,0" VerticalAlignment="Top" FontSize="18"/>
+                <TextBox x:Name="txt_email" HorizontalAlignment="Center" Margin="0,104,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="306" FontSize="18"/>
+                <Label Content="Foto" HorizontalAlignment="Center" Margin="0,262,0,0" VerticalAlignment="Top" FontSize="18"/>
+                <Label Content="Escolha uma foto"  HorizontalAlignment="Center" HorizontalContentAlignment="Center" Margin="0,292,0,0" VerticalAlignment="Top" FontSize="16" Width="174"/>
+                <Button x:Name="bttn_foto" Content="Escolher" HorizontalAlignment="Left" Margin="508,296,0,0" VerticalAlignment="Top" Height="27" Width="90" FontSize="18"/>
+            </Grid>
+        </TabItem>
+    </TabControl>
 </Window>
