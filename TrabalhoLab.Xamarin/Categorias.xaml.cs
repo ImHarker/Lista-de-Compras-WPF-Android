@@ -27,9 +27,10 @@ namespace TrabalhoLab.Xamarin {
             base.OnAppearing();
             atualizarCategorias();
         }
-        private void atualizarCategoriass(Categoria categoria) {
+        private async void atualizarCategoriass(Categoria categoria) {
             listview.ItemsSource = null;
             listview.ItemsSource = app.Gestor.ListaAtual.Categorias;
+            app.Gestor.UpdateTimestamp();
             app.Gestor.SaveListas();
 
 
@@ -37,6 +38,7 @@ namespace TrabalhoLab.Xamarin {
         private void atualizarCategorias() {
             listview.ItemsSource = null;
             listview.ItemsSource = app.Gestor.ListaAtual.Categorias;
+            app.Gestor.UpdateTimestamp();
             app.Gestor.SaveListas();
 
         }

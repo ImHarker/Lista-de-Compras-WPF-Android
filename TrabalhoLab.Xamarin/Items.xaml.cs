@@ -8,15 +8,12 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace TrabalhoLab.Xamarin
-{
+namespace TrabalhoLab.Xamarin {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Items : ContentPage
-    {
+    public partial class Items : ContentPage {
         private App app;
         private Categoria cat;
-        public Items(Categoria catg)
-        {
+        public Items(Categoria catg) {
             InitializeComponent();
             this.cat = catg;
             Title = cat.Nome;
@@ -25,66 +22,56 @@ namespace TrabalhoLab.Xamarin
 
             cat.ItemAdicionado += atualizarItems;
             cat.ItemRemovido += atualizarItems;
-          
+
         }
-        
-         private void atualizarItems()
-        {
+
+        private void atualizarItems() {
             listview.ItemsSource = null;
             listview.ItemsSource = cat.Items;
-                app.Gestor.SaveListas();
-   
+            app.Gestor.UpdateTimestamp();
+            app.Gestor.SaveListas();
+
 
         }
 
-             private void MainListView_ItemTapped(object sender, ItemTappedEventArgs e)
-        {
+        private void MainListView_ItemTapped(object sender, ItemTappedEventArgs e) {
             ((ListView)sender).SelectedItem = null;
 
 
         }
-        async private void Button_Clicked(object sender, EventArgs e)
-        {
+        async private void Button_Clicked(object sender, EventArgs e) {
             Item item = new Item();
             string answer = await DisplayPromptAsync("Criar Item", "Quantidade do Item");
-            if (answer != null)
-            {
+            if (answer != null) {
                 item.Qtd = answer;
                 answer = await DisplayPromptAsync("Criar Item", "Nome do Item");
-                if (answer != null)
-                {
+                if (answer != null) {
                     item.Descricao = answer;
-                    try
-                    {
+                    try {
                         item.ValidaDados();
                         cat.AddItem(item);
-                    }
-                    catch (ValorInvalidoException err)
-                    {
+                    } catch (ValorInvalidoException err) {
                         await DisplayAlert("Erro!", err.Message, "Ok");
                     }
                 }
             }
         }
-        async private void AlteraCategoriaMenuItem_Clicked(object sender, EventArgs e)
-        {
+        async private void AlteraCategoriaMenuItem_Clicked(object sender, EventArgs e) {
             var mi = ((MenuItem)sender);
             var item = mi.CommandParameter as Item;
             var index = (listview.ItemsSource as List<Item>).IndexOf(item);
-          List<string> cats = new List<string>();
+            List<string> cats = new List<string>();
             foreach (Categoria cat in app.Gestor.ListaAtual.Categorias)
                 cats.Add(cat.Nome);
             string[] catgs = cats.ToArray();
             string answer = await DisplayActionSheet("Alterar Categoria", "Cancel", null, catgs);
-            if (answer != "Cancel")
-            {
+            if (answer != "Cancel") {
                 cat.RemoveItem(index);
                 app.Gestor.ListaAtual.Categorias.Find(x => x.Nome.Equals(answer)).AddItem(item);
             }
 
         }
-        private void ApagarMenuItem_Clicked(object sender, EventArgs e)
-        {
+        private void ApagarMenuItem_Clicked(object sender, EventArgs e) {
             var mi = ((MenuItem)sender);
             var item = mi.CommandParameter as Item;
             var index = (listview.ItemsSource as List<Item>).IndexOf(item);
@@ -92,42 +79,35 @@ namespace TrabalhoLab.Xamarin
 
         }
 
-        async private void RenomearMenuItem_Clicked(object sender, EventArgs e)
-        {
+        async private void RenomearMenuItem_Clicked(object sender, EventArgs e) {
             var mi = ((MenuItem)sender);
             var item = mi.CommandParameter as Item;
             var index = (listview.ItemsSource as List<Item>).IndexOf(item);
 
             Item nitem = new Item();
             string answer = await DisplayPromptAsync("Alterar Item", "Quantidade do Item");
-            if (answer != null)
-            {
+            if (answer != null) {
                 nitem.Qtd = answer;
                 answer = await DisplayPromptAsync("Alterar Item", "Nome do Item");
-                if (answer != null)
-                {
+                if (answer != null) {
                     nitem.Descricao = answer;
-                    try
-                    {
+                    try {
                         nitem.Comprado = item.Comprado;
                         nitem.ValidaDados();
                         cat.RemoveItem(index);
                         cat.AddItem(nitem);
-                    }
-                    catch (ValorInvalidoException err)
-                    {
+                    } catch (ValorInvalidoException err) {
 
                         await DisplayAlert("Erro!", err.Message, "Ok");
                     }
                 }
-                }
-            
+            }
+
 
         }
 
-         private void CheckBox_CheckedChanged(object sender, CheckedChangedEventArgs e)
-        {
-           
+        private void CheckBox_CheckedChanged(object sender, CheckedChangedEventArgs e) {
+            app.Gestor.UpdateTimestamp();
             app.Gestor.SaveListas();
 
         }

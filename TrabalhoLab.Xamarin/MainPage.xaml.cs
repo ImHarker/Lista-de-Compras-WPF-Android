@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using Xamarin.Forms;
 
 namespace TrabalhoLab.Xamarin {
@@ -28,12 +29,14 @@ namespace TrabalhoLab.Xamarin {
         private void atualizaListaa(Lista lista) {
             listview.ItemsSource = null;
             listview.ItemsSource = app.Gestor.GestorList;
+            app.Gestor.UpdateTimestamp();
             app.Gestor.SaveListas();
 
         }
         private void atualizaLista() {
             listview.ItemsSource = null;
             listview.ItemsSource = app.Gestor.GestorList;
+            app.Gestor.UpdateTimestamp();
             app.Gestor.SaveListas();
         }
         async private void MainListView_ItemTapped(object sender, ItemTappedEventArgs e) {
@@ -87,9 +90,41 @@ namespace TrabalhoLab.Xamarin {
 
         async private void Refresh_Clicked(object sender, EventArgs e) {
             try {
-                app.Gestor.UpdateListaRequest("admin");
+                XDocument doc = app.Gestor.UpdateListaGETRequest("admin");
+                XDocument local = new XDocument(app.Gestor.ListaToXML());
+                XDocument server = new XDocument(doc);
+                local.Element("ListasDeCompras").Attribute("timestamp").Remove();
+                server.Element("ListasDeCompras").Attribute("timestamp").Remove();
+                if (local.ToString().GetHashCode() == server.ToString().GetHashCode())
+                    await DisplayAlert("Informação!", "A lista já se encontra atualizada!", "OK");
+                else {
+                    if (app.Gestor.Timestamp > app.Gestor.GetTimestamp(doc)) {
+                        var a1 = await DisplayAlert("Atenção!", "O servidor tem uma versão de uma data anterior! Deseja, mesmo assim, atualizar a lista?", "Yes", "No");
+                        if (a1) {
+                            app.Gestor.UpdateLista(doc);
+                            return;
+                        }
+                        var a2 = await DisplayAlert("Atenção!", "Deseja atualizar a lista do servidor?", "Yes", "No");
+                        if (a2) {
+                            app.Gestor.UpdateListaPOSTRequest("admin");
+                            return;
+                        }
+                    }
+                    if (app.Gestor.Timestamp < app.Gestor.GetTimestamp(doc)) {
+                        var a3 = await DisplayAlert("Atenção!", "O servidor tem uma versão mais recente! Deseja atualizar a lista?", "Yes", "No");
+                        if (a3) {
+                            app.Gestor.UpdateLista(doc);
+                            return;
+                        }
+                        var a4 = await DisplayAlert("Atenção!", "Deseja sobrepor a lista do servidor?", "Yes", "No");
+                        if (a4) {
+                            app.Gestor.UpdateListaPOSTRequest("admin");
+                        }
+                    }
+                }
+
             } catch (ValorInvalidoException err) {
-                await DisplayAlert("Erro!", err.Message, "Ok");
+                await DisplayAlert(err.Message, "Erro!", "Ok");
             }
         }
     }
